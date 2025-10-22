@@ -8,7 +8,6 @@ const api = axios.create({
   },
 });
 
-// Request interceptor - token qo'shish
 api.interceptors.request.use(
   (config) => {
     const token = Cookies.get('AccessToken');
@@ -22,7 +21,6 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor - error handling
 api.interceptors.response.use(
   (response) => response,
   (error) => {

@@ -11,11 +11,9 @@ const authMiddleware = require("../middleware/autharation.middleware");
 const adminMiddleware = require("../middleware/admin-superadmin.middleware");
 const uploadFile = require("../utils/upload");
 
-// Public routes
 router.get("/", getAllBrands);
 router.get("/:id", getBrandById);
 
-// Admin routes
 router.post("/", authMiddleware, adminMiddleware, uploadFile.single("logo"), createBrand);
 router.put("/:id", authMiddleware, adminMiddleware, uploadFile.single("logo"), updateBrand);
 router.delete("/:id", authMiddleware, adminMiddleware, deleteBrand);

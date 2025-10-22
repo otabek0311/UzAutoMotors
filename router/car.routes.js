@@ -13,13 +13,11 @@ const authMiddleware = require("../middleware/autharation.middleware");
 const adminMiddleware = require("../middleware/admin-superadmin.middleware");
 const uploadFile = require("../utils/upload");
 
-// Public routes
 router.get("/", getAllCars);
 router.get("/popular", getPopularCars);
 router.get("/latest", getLatestCars);
 router.get("/:id", getCarById);
 
-// Admin routes
 router.post(
   "/",
   authMiddleware,

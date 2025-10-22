@@ -124,11 +124,9 @@ async function seedBrands() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('✅ MongoDB ga ulandi!');
 
-    // Eski markalarni o'chirish (ixtiyoriy)
     await Brand.deleteMany({});
     console.log('🗑️  Eski markalar o\'chirildi');
 
-    // Yangi markalarni qo'shish
     await Brand.insertMany(brands);
     console.log(`✅ ${brands.length} ta marka muvaffaqiyatli qo'shildi!`);
 

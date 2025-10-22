@@ -3,7 +3,6 @@ const Brand = require("../schema/brand.schema");
 const CustomErrorHandler = require("../error/custom-error-handler");
 const fs = require("fs");
 
-// Create Car
 const createCar = async (req, res, next) => {
   try {
     const {
@@ -20,13 +19,11 @@ const createCar = async (req, res, next) => {
       description,
     } = req.body;
 
-    // Marka mavjudligini tekshirish
     const brandExists = await Brand.findById(brand);
     if (!brandExists) {
       return next(CustomErrorHandler.NotFound("Marka topilmadi!"));
     }
 
-    // Rasmlar yuklangani tekshirish
     const images = {
       exterior: [],
       interior: [],
@@ -62,7 +59,6 @@ const createCar = async (req, res, next) => {
 
     await car.save();
 
-    // Populate brand ma'lumotini qo'shish
     await car.populate("brand");
 
     res.status(201).json({
@@ -75,7 +71,6 @@ const createCar = async (req, res, next) => {
   }
 };
 
-// Get All Cars
 const getAllCars = async (req, res, next) => {
   try {
     const {
@@ -139,7 +134,6 @@ const getAllCars = async (req, res, next) => {
   }
 };
 
-// Get Car by ID
 const getCarById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -149,7 +143,6 @@ const getCarById = async (req, res, next) => {
       return next(CustomErrorHandler.NotFound("Mashina topilmadi!"));
     }
 
-    // Ko'rish sonini oshirish
     car.viewCount += 1;
     await car.save();
 
@@ -162,7 +155,6 @@ const getCarById = async (req, res, next) => {
   }
 };
 
-// Update Car
 const updateCar = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -173,7 +165,6 @@ const updateCar = async (req, res, next) => {
       return next(CustomErrorHandler.NotFound("Mashina topilmadi!"));
     }
 
-    // Agar yangi marka berilgan bo'lsa, tekshirish
     if (updateData.brand) {
       const brandExists = await Brand.findById(updateData.brand);
       if (!brandExists) {
@@ -181,10 +172,8 @@ const updateCar = async (req, res, next) => {
       }
     }
 
-    // Yangi rasmlar yuklangan bo'lsa
     if (req.files) {
       if (req.files.exterior) {
-        // Eski tashqi rasmlarni o'chirish
         car.images.exterior.forEach((imgUrl) => {
           const imgPath = imgUrl.split(req.get('host') + '/')[1];
           if (imgPath && fs.existsSync(imgPath)) fs.unlinkSync(imgPath);
@@ -194,7 +183,6 @@ const updateCar = async (req, res, next) => {
         );
       }
       if (req.files.interior) {
-        // Eski ichki rasmlarni o'chirish
         car.images.interior.forEach((imgUrl) => {
           const imgPath = imgUrl.split(req.get('host') + '/')[1];
           if (imgPath && fs.existsSync(imgPath)) fs.unlinkSync(imgPath);
@@ -205,7 +193,6 @@ const updateCar = async (req, res, next) => {
       }
     }
 
-    // Features arrayni parse qilish
     if (updateData.features && typeof updateData.features === "string") {
       updateData.features = JSON.parse(updateData.features);
     }
@@ -224,7 +211,6 @@ const updateCar = async (req, res, next) => {
   }
 };
 
-// Delete Car
 const deleteCar = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -234,7 +220,6 @@ const deleteCar = async (req, res, next) => {
       return next(CustomErrorHandler.NotFound("Mashina topilmadi!"));
     }
 
-    // Barcha rasmlarni o'chirish
     [...car.images.exterior, ...car.images.interior].forEach((img) => {
       if (fs.existsSync(img)) fs.unlinkSync(img);
     });
@@ -250,7 +235,6 @@ const deleteCar = async (req, res, next) => {
   }
 };
 
-// Get Popular Cars (most viewed)
 const getPopularCars = async (req, res, next) => {
   try {
     const { limit = 8 } = req.query;
@@ -269,7 +253,6 @@ const getPopularCars = async (req, res, next) => {
   }
 };
 
-// Get Latest Cars
 const getLatestCars = async (req, res, next) => {
   try {
     const { limit = 8 } = req.query;

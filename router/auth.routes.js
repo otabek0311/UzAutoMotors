@@ -11,7 +11,6 @@ const {
 const authValidatorMiddleware = require("../middleware/auth.validator.middleware");
 const authMiddleware = require("../middleware/autharation.middleware");
 
-// Auth routes
 router.post("/register", authValidatorMiddleware("register"), register);
 router.post("/verify-otp", verifyOtp);
 router.post("/login", authValidatorMiddleware("login"), login);

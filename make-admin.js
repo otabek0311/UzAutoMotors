@@ -17,7 +17,6 @@ async function makeAdmin() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('✅ MongoDB ga ulandi!\n');
 
-    // Barcha userlarni ko'rsatish
     const users = await User.find({});
     
     if (users.length === 0) {
@@ -33,7 +32,6 @@ async function makeAdmin() {
       console.log(`   Role: ${user.role} | Tasdiqlangan: ${user.isVerified ? '✅' : '❌'}\n`);
     });
 
-    // Birinchi userni admin qilish
     const firstUser = users[0];
     
     if (firstUser.role === 'admin') {

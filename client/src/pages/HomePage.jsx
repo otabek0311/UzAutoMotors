@@ -21,7 +21,6 @@ function HomePage() {
 
   const loadData = async () => {
     try {
-      // Check if user is authenticated
       if (authService.isAuthenticated()) {
         try {
           const userData = await authService.getCurrentUser();
@@ -51,7 +50,6 @@ function HomePage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar user={user} />
 
-      {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
@@ -69,7 +67,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Brands Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Mashhur markalar</h2>
@@ -92,7 +89,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Popular Cars */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
@@ -110,7 +106,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Latest Cars */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-12">

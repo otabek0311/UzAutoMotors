@@ -160,7 +160,6 @@ function AdminCarForm() {
 
       <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-md p-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {/* Brand */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Marka *
@@ -181,7 +180,6 @@ function AdminCarForm() {
             </select>
           </div>
 
-          {/* Model */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Model *
@@ -196,7 +194,6 @@ function AdminCarForm() {
             />
           </div>
 
-          {/* Year */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Yil *
@@ -213,7 +210,6 @@ function AdminCarForm() {
             />
           </div>
 
-          {/* Price */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Narx (so'm) *
@@ -228,7 +224,6 @@ function AdminCarForm() {
             />
           </div>
 
-          {/* Color */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Rang *
@@ -243,7 +238,6 @@ function AdminCarForm() {
             />
           </div>
 
-          {/* Fuel Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Yoqilg'i turi *
@@ -262,7 +256,6 @@ function AdminCarForm() {
             </select>
           </div>
 
-          {/* Transmission */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Transmissiya *
@@ -279,7 +272,6 @@ function AdminCarForm() {
             </select>
           </div>
 
-          {/* Engine Capacity */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Dvigatel hajmi
@@ -294,7 +286,6 @@ function AdminCarForm() {
             />
           </div>
 
-          {/* Mileage */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Yurgan masofa (km)
@@ -310,7 +301,6 @@ function AdminCarForm() {
           </div>
         </div>
 
-        {/* Description */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Ta'rif
@@ -324,7 +314,6 @@ function AdminCarForm() {
           />
         </div>
 
-        {/* Features */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Xususiyatlar
@@ -359,7 +348,6 @@ function AdminCarForm() {
           </button>
         </div>
 
-        {/* Exterior Images */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Tashqi rasmlar {!isEdit && '*'}
@@ -379,7 +367,6 @@ function AdminCarForm() {
           )}
         </div>
 
-        {/* Interior Images */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Ichki rasmlar
@@ -398,7 +385,6 @@ function AdminCarForm() {
           )}
         </div>
 
-        {/* Is Available */}
         <div className="mb-6">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
@@ -414,7 +400,6 @@ function AdminCarForm() {
           </label>
         </div>
 
-        {/* Submit Buttons */}
         <div className="flex gap-4">
           <button
             type="submit"

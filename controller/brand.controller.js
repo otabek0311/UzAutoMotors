@@ -3,18 +3,15 @@ const CustomErrorHandler = require("../error/custom-error-handler");
 const fs = require("fs");
 const path = require("path");
 
-// Create Brand
 const createBrand = async (req, res, next) => {
   try {
     const { name, description, country } = req.body;
 
-    // Marka mavjudligini tekshirish
     const existingBrand = await Brand.findOne({ name });
     if (existingBrand) {
       return next(CustomErrorHandler.BadRequest("Bu marka allaqachon mavjud!"));
     }
 
-    // Logo fayl yuklangani tekshirish
     if (!req.file) {
       return next(CustomErrorHandler.BadRequest("Logo yuklash majburiy!"));
     }
@@ -38,7 +35,6 @@ const createBrand = async (req, res, next) => {
   }
 };
 
-// Get All Brands
 const getAllBrands = async (req, res, next) => {
   try {
     const { isActive, search, page = 1, limit = 10 } = req.query;
@@ -77,7 +73,6 @@ const getAllBrands = async (req, res, next) => {
   }
 };
 
-// Get Brand by ID
 const getBrandById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -96,7 +91,6 @@ const getBrandById = async (req, res, next) => {
   }
 };
 
-// Update Brand
 const updateBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -107,9 +101,7 @@ const updateBrand = async (req, res, next) => {
       return next(CustomErrorHandler.NotFound("Marka topilmadi!"));
     }
 
-    // Agar yangi logo yuklangan bo'lsa
     if (req.file) {
-      // Eski logoni o'chirish
       if (brand.logo && fs.existsSync(brand.logo)) {
         fs.unlinkSync(brand.logo);
       }
@@ -133,7 +125,6 @@ const updateBrand = async (req, res, next) => {
   }
 };
 
-// Delete Brand
 const deleteBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -143,7 +134,6 @@ const deleteBrand = async (req, res, next) => {
       return next(CustomErrorHandler.NotFound("Marka topilmadi!"));
     }
 
-    // Logo faylini o'chirish
     if (brand.logo && fs.existsSync(brand.logo)) {
       fs.unlinkSync(brand.logo);
     }
