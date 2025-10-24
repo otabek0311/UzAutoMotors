@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://uzautomotors.vercel.app'],
+  origin: ['http://localhost:5173', 'https://uz-auto-motors-frontend.vercel.app'],
   credentials: true,
 }));
 app.use(express.json());
