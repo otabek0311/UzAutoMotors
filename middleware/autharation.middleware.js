@@ -3,7 +3,9 @@ const CustomErrorHandler = require("../error/custom-error-handler");
 
 module.exports = function (req, res, next) {
   try {
-    const access_token = req.cookies?.AccessToken;
+    const authHeader = req.headers?.authorization;
+    const access_token = authHeader?.split(" ")[1] || req.cookies?.AccessToken;
+    
     if (!access_token) {
       throw CustomErrorHandler.UnAuthorized("Token topilmadi!");
     }
@@ -12,7 +14,6 @@ module.exports = function (req, res, next) {
       if (err) {
         throw CustomErrorHandler.Forbidden("Yaroqsiz token!");
       }
-
       req.user = decoded;
       next();
     });
