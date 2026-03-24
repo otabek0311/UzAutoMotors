@@ -9,14 +9,15 @@ module.exports = async function(email, otp) {
                 pass: process.env.APP_PASS
             }
         })
-        await transport.sendMail({
+        const info = await transport.sendMail({
             from: "abdullayevotabek414@gmail.com",
-            to:email,
-            subject: "DevBook",
-            text: "Verification code from devbook",
-            html: `<p style="font-size: 24px">Verify code: <strong style="color: green">${otp}</strong></p>`
+            to: email,
+            subject: "UzAutoMotors - Tasdiqlash kodi",
+            html: `<p style="font-size: 24px">Tasdiqlash kodi: <strong style="color: green">${otp}</strong></p>`
         })
+        console.log("Email yuborildi:", info.messageId)
     } catch (error) {
+        console.error("Email xatosi:", error.message)
         throw new Error(error)
     }
 }
