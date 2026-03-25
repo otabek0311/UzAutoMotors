@@ -30,7 +30,7 @@ module.exports = function (err, req, res, next) {
         errors: [err.message],
       });
     }
-    next();
+    next(err);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

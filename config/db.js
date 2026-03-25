@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 async function connectDB() {
   try {
-    await mongoose
-      .connect(process.env.MONGO_URI)
-      .then(() => console.log("DataBase ga ulandi"))
-      .catch((err) => console.log(err.message));
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("DataBase ga ulandi");
   } catch (error) {
-    console.log(error.message);
+    console.log("MongoDB ulanmadi:", error.message);
+    process.exit(1);
   }
 }
 

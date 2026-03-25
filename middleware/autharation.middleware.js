@@ -12,7 +12,7 @@ module.exports = function (req, res, next) {
 
     jwt.verify(access_token, process.env.ACCESS_SECRET_KEY, (err, decoded) => {
       if (err) {
-        throw CustomErrorHandler.Forbidden("Yaroqsiz token!");
+        return next(CustomErrorHandler.Forbidden("Yaroqsiz token!"));
       }
       req.user = decoded;
       next();

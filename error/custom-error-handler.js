@@ -11,7 +11,7 @@ module.exports = class CustomErrorHendler extends Error{
         return new CustomErrorHendler(400, message,errors = [])
     }
 
-    static unAuthorazed(message,errors = []){
+    static UnAuthorized(message,errors = []){
         return new CustomErrorHendler(401, message,errors = [])
     }
 
